@@ -4,8 +4,11 @@
              xmlns:local="clr-namespace:FabrikaFood"
              x:Class="FabrikaFood.MainPage">
 
-  <Label Text="Welcome to Xamarin Forms!"
-           VerticalOptions="Center"
-           HorizontalOptions="Center" />
+  <ContentPage.Content>
+    <StackLayout Orientation="Vertical">
+      <Label x:Name="message" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+      <Button Clicked="Button_Clicked" Text="Load Menu"></Button>
+    </StackLayout>
+  </ContentPage.Content>
 
 </ContentPage>

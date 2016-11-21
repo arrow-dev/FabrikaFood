@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.WindowsAzure.MobileServices;
+using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
+using MenuItem = FabrikaFood.Models.MenuItem;
 
 namespace FabrikaFood
 {
@@ -12,6 +11,14 @@ namespace FabrikaFood
         public MainPage()
         {
             InitializeComponent();
+        }
+
+        private async void Button_Clicked(object sender, EventArgs e)
+        {
+
+            MobileServiceClient client = new MobileServiceClient("http://fabrikafood.azurewebsites.net");
+            var menuItems = await client.GetTable<MenuItem>().ReadAsync();
+            message.Text = menuItems.First().Title;
         }
     }
 }
