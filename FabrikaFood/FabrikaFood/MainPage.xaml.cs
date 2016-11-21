@@ -1,6 +1,9 @@
 ﻿using Microsoft.WindowsAzure.MobileServices;
 using System;
-using System.Linq;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using MenuItem = FabrikaFood.Models.MenuItem;
 
@@ -15,10 +18,28 @@ namespace FabrikaFood
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
+            var menuItems = await GetMenuAndComments();
+        }
+        public async Task<IEnumerable<MenuItem>> GetMenuAndComments()
+        {
+            MobileServiceClient client = new MobileServiceClient("http://fabrikafood.azurewebsites.net", new MyHandler());
+            return await client.GetTable<MenuItem>().WithParameters(new Dictionary<string, string> { {"expand", "comments"} }).ToListAsync();
+        }
 
-            MobileServiceClient client = new MobileServiceClient("http://fabrikafood.azurewebsites.net");
-            var menuItems = await client.GetTable<MenuItem>().ReadAsync();
-            message.Text = menuItems.First().Title;
+        public class MyHandler : DelegatingHandler
+        {
+            protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+            {
+                UriBuilder builder = new UriBuilder(request.RequestUri);
+
+                builder.Query = builder.Query
+                    .Replace("expand", "$expand")
+                    .TrimStart('?');
+
+                request.RequestUri = builder.Uri;
+
+                return await base.SendAsync(request, cancellationToken);
+            }
         }
     }
 }
