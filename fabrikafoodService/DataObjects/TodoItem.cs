@@ -1,6 +1,6 @@
 ﻿using Microsoft.Azure.Mobile.Server;
 
-namespace FabrikaFoodBackend.DataObjects
+namespace fabrikafoodService.DataObjects
 {
     public class TodoItem : EntityData
     {

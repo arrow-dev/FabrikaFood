@@ -4,17 +4,17 @@ using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.OData;
 using Microsoft.Azure.Mobile.Server;
-using FabrikaFoodBackend.DataObjects;
-using FabrikaFoodBackend.Models;
+using fabrikafoodService.DataObjects;
+using fabrikafoodService.Models;
 
-namespace FabrikaFoodBackend.Controllers
+namespace fabrikafoodService.Controllers
 {
     public class TodoItemController : TableController<TodoItem>
     {
         protected override void Initialize(HttpControllerContext controllerContext)
         {
             base.Initialize(controllerContext);
-            MobileServiceContext context = new MobileServiceContext();
+            fabrikafoodContext context = new fabrikafoodContext();
             DomainManager = new EntityDomainManager<TodoItem>(context, Request);
         }
 

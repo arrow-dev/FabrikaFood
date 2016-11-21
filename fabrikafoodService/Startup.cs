@@ -1,9 +1,9 @@
-﻿using Microsoft.Owin;
+using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartup(typeof(FabrikaFoodBackend.Startup))]
+[assembly: OwinStartup(typeof(fabrikafoodService.Startup))]
 
-namespace FabrikaFoodBackend
+namespace fabrikafoodService
 {
     public partial class Startup
     {
