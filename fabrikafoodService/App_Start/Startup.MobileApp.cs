@@ -49,7 +49,7 @@ namespace fabrikafoodService
         }
     }
 
-    public class fabrikafoodInitializer : DropCreateDatabaseAlways<fabrikafoodContext>
+    public class fabrikafoodInitializer : DropCreateDatabaseIfModelChanges<fabrikafoodContext>
     {
         protected override void Seed(fabrikafoodContext context)
         {

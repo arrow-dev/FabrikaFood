@@ -1,19 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿
+using FabrikaFood.Abstractions;
+using FabrikaFood.Services;
 using Xamarin.Forms;
 
 namespace FabrikaFood
 {
     public partial class App : Application
     {
+        public static ICloudService CloudService { get; set; }
+
         public App()
         {
-            InitializeComponent();
-
-            MainPage = new FabrikaFood.MainPage();
+            CloudService = new AzureCloudService();
+            MainPage = new NavigationPage(new Pages.MainPage());
         }
 
         protected override void OnStart()
