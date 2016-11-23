@@ -1,5 +1,7 @@
 ﻿using FabrikaFood.Abstractions;
 using Microsoft.WindowsAzure.MobileServices;
+using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace FabrikaFood.Services
 {
@@ -12,10 +14,12 @@ namespace FabrikaFood.Services
             client = new MobileServiceClient("http://fabrikafood.azurewebsites.net");
         }
 
-        public ICloudTable<T> GetTable<T>() where T : TableData
-        {
+        public ICloudTable<T> GetTable<T>() where T : TableData => new AzureCloudTable<T>(client);
 
-            return new AzureCloudTable<T>(client);
+        public Task LoginAsync()
+        {
+            var loginProvider = DependencyService.Get<ILoginProvider>();
+            return loginProvider.LoginAsync(client);
         }
     }
 }

@@ -1,10 +1,16 @@
 ﻿
 using FabrikaFood.Abstractions;
 using FabrikaFood.Services;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace FabrikaFood
 {
+    public interface IAuthenticate
+    {
+        Task<bool> Authenticate();
+    }
+
     public partial class App : Application
     {
         public static ICloudService CloudService { get; set; }

@@ -1,11 +1,10 @@
-﻿using System;
-
+﻿
 using Android.App;
 using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
+using FabrikaFood.Abstractions;
+using FabrikaFood.Droid.Services;
+using Xamarin.Forms;
 
 namespace FabrikaFood.Droid
 {
@@ -19,7 +18,12 @@ namespace FabrikaFood.Droid
 
             base.OnCreate(bundle);
 
+            Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
+
             global::Xamarin.Forms.Forms.Init(this, bundle);
+
+            ((DroidLoginProvider)DependencyService.Get<ILoginProvider>()).Init(this);
+
             LoadApplication(new App());
         }
     }

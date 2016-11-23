@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FabrikaFood.Abstractions;
+using FabrikaFood.Models;
 
 namespace FabrikaFood.ViewModels
 {
-    class MenuItemDetailViewModel
+    class MenuItemDetailViewModel: BaseViewModel
     {
+        public MenuItem Item { get; set; }
+
+        public MenuItemDetailViewModel(MenuItem menuItem)
+        {
+            Item = menuItem;
+            Title = menuItem.Title;
+        }
     }
 }

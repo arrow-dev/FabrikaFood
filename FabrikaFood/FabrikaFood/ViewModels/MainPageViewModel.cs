@@ -26,7 +26,7 @@ namespace FabrikaFood.ViewModels
 
             try
             {
-                Application.Current.MainPage = new NavigationPage(new Pages.MenuPage());
+                 Application.Current.MainPage = new NavigationPage(new Pages.MenuPage());
             }
             catch (Exception ex)
             {
