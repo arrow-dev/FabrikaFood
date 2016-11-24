@@ -1,24 +1,24 @@
-﻿
-using FabrikaFood.Abstractions;
-using FabrikaFood.Services;
-using System.Threading.Tasks;
+﻿using FabrikaFood.Services;
 using Xamarin.Forms;
 
 namespace FabrikaFood
 {
-    public interface IAuthenticate
-    {
-        Task<bool> Authenticate();
-    }
-
     public partial class App : Application
     {
-        public static ICloudService CloudService { get; set; }
+        public static AzureCloudService CloudService { get; set; }
 
         public App()
         {
-            CloudService = new AzureCloudService();
             MainPage = new NavigationPage(new Pages.MainPage());
+        }
+
+        public static AzureCloudService GetCloudService()
+        {
+            if (CloudService == null)
+            {
+                CloudService = new AzureCloudService();
+            }
+            return CloudService;
         }
 
         protected override void OnStart()

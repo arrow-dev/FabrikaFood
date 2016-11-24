@@ -38,7 +38,6 @@
     <Compile Include="Abstractions\BaseViewModel.cs" />
     <Compile Include="Abstractions\ICloudService.cs" />
     <Compile Include="Abstractions\ICloudTable.cs" />
-    <Compile Include="Abstractions\ILoginProvider.cs" />
     <Compile Include="Abstractions\TableData.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
