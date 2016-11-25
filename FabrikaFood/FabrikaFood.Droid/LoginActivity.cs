@@ -5,7 +5,7 @@ using Android.OS;
 
 namespace FabrikaFood.Droid
 {
-    [Activity(Label = "LoginActivity", MainLauncher = true, NoHistory=true)]
+    [Activity(Label = "Login with Facebook", MainLauncher = true, NoHistory=true)]
     public class LoginActivity : Activity
     {
         protected async override void OnCreate(Bundle savedInstanceState)

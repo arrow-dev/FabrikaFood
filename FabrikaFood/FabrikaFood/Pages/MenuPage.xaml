@@ -5,8 +5,7 @@
              Title="{Binding Title}">
   <ContentPage.Content>
     <StackLayout>
-      <ListView CachingStrategy="RecycleElement"
-                IsPullToRefreshEnabled="True"
+      <ListView IsPullToRefreshEnabled="True"
                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
                 ItemsSource="{Binding Items}"
                 RefreshCommand="{Binding RefreshCommand}"
@@ -19,10 +18,12 @@
                            Orientation="Horizontal"
                            Padding="10"
                            VerticalOptions="CenterAndExpand">
+                <Image Source="dinner_thumbnail.png"
+                       Aspect="AspectFit"/>
                 <Label HorizontalOptions="FillAndExpand"
                        Text="{Binding Title}"
                        TextColor="#272832" />
-                <Label Text="{Binding Price}"
+                <Label Text="{Binding Price, StringFormat='{0:C}'}"
                        TextColor="#272832" />
               </StackLayout>
             </ViewCell>
