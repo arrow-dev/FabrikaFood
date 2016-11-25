@@ -6,7 +6,32 @@
   <ContentPage.Content>
     <StackLayout Padding="10" Spacing="10">
       <Label Text="{Binding Item.Description}"/>
-      <Label Text="{Binding Item.Price}"/>
+      <Label Text="{Binding Item.Price, StringFormat='{0:C}'}"/>
+      <Button Text="Post Comment"
+              BackgroundColor="Teal"/>
+      <ListView IsPullToRefreshEnabled="True"
+                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                ItemsSource="{Binding Comments}"
+                RefreshCommand="{Binding RefreshCommand}"
+                RowHeight="50">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+              <StackLayout HorizontalOptions="FillAndExpand"
+                           Orientation="Vertical"
+                           Padding="10"
+                           VerticalOptions="CenterAndExpand">
+                <Label HorizontalOptions="FillAndExpand"
+                       Text="UserName goes here!"
+                       TextColor="#272832" />
+                <Label HorizontalOptions="FillAndExpand"
+                       Text="{Binding Content }"
+                       TextColor="#272832" />
+              </StackLayout>
+            </ViewCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
       <StackLayout VerticalOptions="CenterAndExpand"/>
     </StackLayout>
   </ContentPage.Content>

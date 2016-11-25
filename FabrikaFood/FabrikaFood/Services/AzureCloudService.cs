@@ -1,6 +1,9 @@
 ﻿using FabrikaFood.Abstractions;
+using FabrikaFood.Models;
 using Microsoft.WindowsAzure.MobileServices;
 using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace FabrikaFood.Services
 {
@@ -24,6 +27,12 @@ namespace FabrikaFood.Services
         {
             get { return client.CurrentUser; }
             set { client.CurrentUser = value; }
+        }
+
+
+        public async Task<ICollection<Comment>> GetComments(string menuItemId)
+        {
+            return await client.GetTable<Comment>().Where(c => c.MenuItemId == menuItemId).ToListAsync();
         }
     }
 }

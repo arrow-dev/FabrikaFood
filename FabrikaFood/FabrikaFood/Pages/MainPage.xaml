@@ -11,8 +11,8 @@
                      VerticalOptions="Center">
             <Button BackgroundColor="Teal"
                     BorderRadius="10"
-                    Command="{Binding LoginCommand}"
-                    Text="Login"
+                    Command="{Binding MenuCommand}"
+                    Text="Our Menu"
                     TextColor="White" />
         </StackLayout>
     </ContentPage.Content>

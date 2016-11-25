@@ -9,7 +9,6 @@ using System.Web.Http.OData;
 
 namespace fabrikafoodService.Controllers
 {
-    [Authorize]
     public class MenuItemController : TableController<MenuItem>
     {
         protected override void Initialize(HttpControllerContext controllerContext)

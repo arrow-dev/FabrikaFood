@@ -13,12 +13,12 @@ namespace FabrikaFood.ViewModels
             Title = "Fabrika Food";
         }
 
-        Command loginCommand;
+        Command menuCommand;
 
-        public Command LoginCommand
-            => loginCommand ?? (loginCommand = new Command(async () => await ExecuteLoginCommand()));
+        public Command MenuCommand
+            => menuCommand ?? (menuCommand = new Command(async () => await ExecuteMenuCommand()));
 
-        async Task ExecuteLoginCommand()
+        async Task ExecuteMenuCommand()
         {
             if (IsBusy)
                 return;
@@ -30,7 +30,7 @@ namespace FabrikaFood.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[Login] Error = {ex.Message}");
+                Debug.WriteLine($"{ex.Message}");
             }
             finally
             {

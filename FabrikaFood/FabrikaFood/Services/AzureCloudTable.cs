@@ -15,8 +15,7 @@ namespace FabrikaFood.Services
             this.client = client;
             this.table = client.GetTable<T>();
         }
-
-        #region ICloudTable implementation
+        
         public async Task<T> CreateItemAsync(T item)
         {
             await table.InsertAsync(item);
@@ -43,6 +42,5 @@ namespace FabrikaFood.Services
             await table.UpdateAsync(item);
             return item;
         }
-        #endregion
     }
 }
