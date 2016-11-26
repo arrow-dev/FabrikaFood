@@ -1,5 +1,6 @@
 ﻿
 using FabrikaFood.ViewModels;
+using System;
 using Xamarin.Forms;
 
 namespace FabrikaFood.Pages
@@ -10,6 +11,24 @@ namespace FabrikaFood.Pages
         {
             InitializeComponent();
             BindingContext = new MenuItemDetailViewModel(menuItem);
+        }
+
+        private void PostComment_Clicked(object sender, EventArgs e)
+        {
+            var clickedButton = (Button)sender;
+            if (!Editor.IsVisible)
+            {
+                clickedButton.Text = "Cancel";
+                Editor.IsVisible = true;
+                PostButton.IsVisible = true;
+            }
+            else
+            {
+                clickedButton.Text = "Post Comment";
+                Editor.IsVisible = false;
+                PostButton.IsVisible = false;
+            }
+            
         }
     }
 }

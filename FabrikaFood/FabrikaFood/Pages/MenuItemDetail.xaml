@@ -8,7 +8,16 @@
       <Label Text="{Binding Item.Description}"/>
       <Label Text="{Binding Item.Price, StringFormat='{0:C}'}"/>
       <Button Text="Post Comment"
-              BackgroundColor="Teal"/>
+              BackgroundColor="Teal"
+              Clicked="PostComment_Clicked"/>
+      <Editor Text="{Binding NewComment, Mode=TwoWay}" 
+              x:Name="Editor"
+              HeightRequest="100" 
+              IsVisible="false"></Editor>
+      <Button Text="Ok"
+              x:Name="PostButton"
+              Command="{Binding PostCommentCommand}"
+              IsVisible="False"></Button>
       <ListView IsPullToRefreshEnabled="True"
                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
                 ItemsSource="{Binding Comments}"

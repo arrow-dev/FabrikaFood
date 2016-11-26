@@ -34,5 +34,10 @@ namespace FabrikaFood.Services
         {
             return await client.GetTable<Comment>().Where(c => c.MenuItemId == menuItemId).ToListAsync();
         }
+
+        public async Task PostComment(Comment comment)
+        {
+            await client.GetTable<Comment>().InsertAsync(comment);
+        }
     }
 }

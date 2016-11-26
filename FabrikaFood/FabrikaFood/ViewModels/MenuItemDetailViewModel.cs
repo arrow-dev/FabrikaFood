@@ -1,4 +1,5 @@
 ﻿using FabrikaFood.Abstractions;
+using FabrikaFood.Models;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -25,6 +26,14 @@ namespace FabrikaFood.ViewModels
         {
             get { return comments; }
             set { SetProperty(ref comments, value, "Comments"); }
+        }
+
+        private String newComment;
+
+        public string NewComment
+        {
+            get { return newComment; }
+            set { SetProperty(ref newComment, value, "NewComment");}
         }
 
         Command refreshCmd;
@@ -61,5 +70,40 @@ namespace FabrikaFood.ViewModels
                 await ExecuteRefreshCommand();
             });
         }
+
+        Command postCommentCommand;
+
+        public Command PostCommentCommand
+            => postCommentCommand ?? (postCommentCommand = new Command(async () => await ExecutePostCommentCommand()));
+
+        async Task ExecutePostCommentCommand()
+        {
+            if (IsBusy)
+                return;
+            IsBusy = true;
+
+            try
+            {
+                var comment = new Comment
+                {
+                    Content = NewComment,
+                    MenuItemId = Item.Id,
+                    UserId = App.CloudService.CurrentUser.UserId
+                };
+
+                await App.CloudService.PostComment(comment);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"{ex.Message}");
+            }
+            finally
+            {
+                IsBusy = false;
+                newComment = string.Empty;
+                RefreshList();
+            }
+        }
+
     }
 }
