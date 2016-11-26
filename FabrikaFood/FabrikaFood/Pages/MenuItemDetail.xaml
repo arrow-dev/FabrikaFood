@@ -41,8 +41,10 @@
                        TextColor="#272832" />
                 <StackLayout Orientation="Horizontal"
                              HeightRequest="40">
-                  <Button Text="Delete"></Button>
-                  <Button Text="Edit"></Button>
+                  <Button Text="Delete"
+                          IsVisible="{Binding ShowActions}"></Button>
+                  <Button Text="Edit"
+                          IsVisible="{Binding ShowActions}"></Button>
                 </StackLayout>
               </StackLayout>
             </ViewCell>

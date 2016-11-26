@@ -20,9 +20,9 @@ namespace FabrikaFood.ViewModels
             RefreshList();
         }
 
-        ObservableCollection<Models.Comment> comments = new ObservableCollection<Models.Comment>();
+        ObservableCollection<CommentViewModel> comments = new ObservableCollection<CommentViewModel>();
 
-        public ObservableCollection<Models.Comment> Comments
+        public ObservableCollection<CommentViewModel> Comments
         {
             get { return comments; }
             set { SetProperty(ref comments, value, "Comments"); }
@@ -50,7 +50,21 @@ namespace FabrikaFood.ViewModels
                 var list = await App.GetCloudService().client.GetTable<Comment>().Where(c => c.MenuItemId == Item.Id).ToListAsync();
                 Comments.Clear();
                 foreach (var comment in list)
-                    Comments.Add(comment);
+                {
+                    var viewModel = new CommentViewModel
+                    {
+                        //try and get username here?
+                        UserId = comment.UserId,
+                        MenuItemId = comment.MenuItemId,
+                        Content = comment.Content
+                    };
+                    if (comment.UserId == App.GetCloudService().CurrentUser.UserId)
+                    {
+                        viewModel.ShowActions = true;
+                    }
+                    Comments.Add(viewModel);
+                }
+                    
             }
             catch (Exception ex)
             {
