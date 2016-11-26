@@ -90,7 +90,7 @@ namespace FabrikaFood.ViewModels
                     MenuItemId = Item.Id,
                     UserId = App.CloudService.CurrentUser.UserId
                 };
-
+                
                 await App.CloudService.PostComment(comment);
             }
             catch (Exception ex)
