@@ -1,19 +1,16 @@
 ﻿using FabrikaFood.Abstractions;
-using FabrikaFood.Models;
 using Microsoft.WindowsAzure.MobileServices;
 using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace FabrikaFood.Services
 {
     public class AzureCloudService : ICloudService
     {
-        MobileServiceClient client;
+        public MobileServiceClient client;
 
         public AzureCloudService()
         {
-            client = new MobileServiceClient("http://fabrikafood.azurewebsites.net");
+            client = new MobileServiceClient("https://fabrikafood.azurewebsites.net");
         }
 
         public ICloudTable<T> GetTable<T>() where T : TableData => new AzureCloudTable<T>(client);
@@ -27,17 +24,6 @@ namespace FabrikaFood.Services
         {
             get { return client.CurrentUser; }
             set { client.CurrentUser = value; }
-        }
-
-
-        public async Task<ICollection<Comment>> GetComments(string menuItemId)
-        {
-            return await client.GetTable<Comment>().Where(c => c.MenuItemId == menuItemId).ToListAsync();
-        }
-
-        public async Task PostComment(Comment comment)
-        {
-            await client.GetTable<Comment>().InsertAsync(comment);
         }
     }
 }

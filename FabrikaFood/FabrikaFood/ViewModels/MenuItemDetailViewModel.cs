@@ -47,7 +47,7 @@ namespace FabrikaFood.ViewModels
 
             try
             {
-                var list = await App.CloudService.GetComments(Item.Id);
+                var list = await App.GetCloudService().client.GetTable<Comment>().Where(c => c.MenuItemId == Item.Id).ToListAsync();
                 Comments.Clear();
                 foreach (var comment in list)
                     Comments.Add(comment);
@@ -84,14 +84,14 @@ namespace FabrikaFood.ViewModels
 
             try
             {
-                var comment = new Comment
+                var comment = new Comment()
                 {
                     Content = NewComment,
                     MenuItemId = Item.Id,
                     UserId = App.CloudService.CurrentUser.UserId
                 };
-                
-                await App.CloudService.PostComment(comment);
+
+                await App.CloudService.GetTable<Comment>().CreateItemAsync(comment);
             }
             catch (Exception ex)
             {
@@ -100,7 +100,7 @@ namespace FabrikaFood.ViewModels
             finally
             {
                 IsBusy = false;
-                newComment = string.Empty;
+                NewComment = string.Empty;
                 RefreshList();
             }
         }

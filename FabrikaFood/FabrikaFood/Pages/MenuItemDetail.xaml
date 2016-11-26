@@ -41,7 +41,6 @@
           </DataTemplate>
         </ListView.ItemTemplate>
       </ListView>
-      <StackLayout VerticalOptions="CenterAndExpand"/>
     </StackLayout>
   </ContentPage.Content>
 </ContentPage>
