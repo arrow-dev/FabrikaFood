@@ -22,7 +22,7 @@
                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
                 ItemsSource="{Binding Comments}"
                 RefreshCommand="{Binding RefreshCommand}"
-                RowHeight="50">
+                RowHeight="100">
         <ListView.ItemTemplate>
           <DataTemplate>
             <ViewCell>
@@ -31,11 +31,19 @@
                            Padding="10"
                            VerticalOptions="CenterAndExpand">
                 <Label HorizontalOptions="FillAndExpand"
-                       Text="UserName goes here!"
+                       BackgroundColor="Gray"
+                       HeightRequest="20"
+                       Text="{Binding UserId}"
                        TextColor="#272832" />
                 <Label HorizontalOptions="FillAndExpand"
-                       Text="{Binding Content }"
+                       HeightRequest="50"
+                       Text="{ Binding Content }"
                        TextColor="#272832" />
+                <StackLayout Orientation="Horizontal"
+                             HeightRequest="40">
+                  <Button Text="Delete"></Button>
+                  <Button Text="Edit"></Button>
+                </StackLayout>
               </StackLayout>
             </ViewCell>
           </DataTemplate>
