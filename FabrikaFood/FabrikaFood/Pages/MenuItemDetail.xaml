@@ -42,9 +42,13 @@
                 <StackLayout Orientation="Horizontal"
                              HeightRequest="40">
                   <Button Text="Delete"
-                          IsVisible="{Binding ShowActions}"></Button>
+                          IsVisible="{Binding ShowActions}"
+                          Command="{Binding DeleteComment}"
+                          CommandParameter="{Binding Id}"></Button>
                   <Button Text="Edit"
-                          IsVisible="{Binding ShowActions}"></Button>
+                          IsVisible="{Binding ShowActions}"
+                          Command="{Binding EditComment}"
+                          CommandParameter="{Binding Id}"></Button>
                 </StackLayout>
               </StackLayout>
             </ViewCell>

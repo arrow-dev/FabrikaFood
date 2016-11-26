@@ -56,7 +56,8 @@ namespace FabrikaFood.ViewModels
                         //try and get username here?
                         UserId = comment.UserId,
                         MenuItemId = comment.MenuItemId,
-                        Content = comment.Content
+                        Content = comment.Content,
+                        Id = comment.Id
                     };
                     if (comment.UserId == App.GetCloudService().CurrentUser.UserId)
                     {
