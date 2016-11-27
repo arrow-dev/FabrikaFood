@@ -120,5 +120,32 @@ namespace FabrikaFood.ViewModels
             }
         }
 
+        Command deleteCommentCommand;
+
+        public Command DeleteCommentCommand
+            => deleteCommentCommand ?? (deleteCommentCommand = new Command<string>(async (string id) => await ExecuteDeleteCommentCommand(id)));
+
+        async Task ExecuteDeleteCommentCommand(string id)
+        {
+            if (IsBusy)
+                return;
+            IsBusy = true;
+
+            try
+            {
+                var comment = await App.CloudService.GetTable<Comment>().ReadItemAsync(id);
+                await App.CloudService.GetTable<Comment>().DeleteItemAsync(comment);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"{ex.Message}");
+            }
+            finally
+            {
+                IsBusy = false;
+                RefreshList();
+            }
+        }
+
     }
 }
