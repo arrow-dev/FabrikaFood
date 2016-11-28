@@ -12,20 +12,22 @@
               x:Name="PostCommentButton"
               BackgroundColor="Teal"
               Clicked="PostComment_Clicked"/>
-      <Editor Text="{Binding NewComment, Mode=TwoWay}" 
-              x:Name="Editor"
-              HeightRequest="100" 
-              IsVisible="false"></Editor>
       <Button Text="Ok"
+              BackgroundColor="Teal"
               x:Name="PostButton"
               Command="{Binding PostCommentCommand}"
               Clicked="PostComment_Clicked"
               IsVisible="False"></Button>
       <Button Text="Update"
+              BackgroundColor="Teal"
               x:Name="UpdateButton"
               Command="{Binding UpdateCommentCommand}"
               Clicked="PostComment_Clicked"
               IsVisible="False"></Button>
+      <Editor Text="{Binding NewComment, Mode=TwoWay}"
+              x:Name="Editor"
+              HeightRequest="100"
+              IsVisible="false"></Editor>
       <ListView IsPullToRefreshEnabled="True"
                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
                 ItemsSource="{Binding Comments}"
@@ -50,10 +52,12 @@
                 <StackLayout Orientation="Horizontal"
                              HeightRequest="40">
                   <Button Text="Delete"
+                          BackgroundColor="Red"
                           IsVisible="{Binding ShowActions}"
                           Command="{Binding Path= BindingContext.DeleteCommentCommand, Source={x:Reference Name= MenuItem}}"
                           CommandParameter="{Binding Id}"></Button>
                   <Button Text="Edit"
+                          BackgroundColor="Teal"
                           IsVisible="{Binding ShowActions}"
                           Clicked="EditButton_OnClicked"
                           CommandParameter="{Binding Id}"></Button>
