@@ -11,7 +11,7 @@ namespace FabrikaFood.ViewModels
     {
         public MenuPageViewModel()
         {
-            Title = "Fabrika Food - Our Menu";
+            Title = "Fabrikam Food - Our Menu";
             RefreshList();
         }
 

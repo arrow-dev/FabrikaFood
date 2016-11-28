@@ -147,5 +147,33 @@ namespace FabrikaFood.ViewModels
             }
         }
 
+        Command updateCommentCommand;
+
+        public Command UpdateCommentCommand
+            => updateCommentCommand ?? (updateCommentCommand = new Command<string>(async (string id) => await ExecuteUpdateCommentCommand(id)));
+
+        async Task ExecuteUpdateCommentCommand(string id)
+        {
+            if (IsBusy)
+                return;
+            IsBusy = true;
+
+            try
+            {
+                var comment = await App.CloudService.GetTable<Comment>().ReadItemAsync(id);
+                comment.Content = NewComment;
+                await App.CloudService.GetTable<Comment>().UpdateItemAsync(comment);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"{ex.Message}");
+            }
+            finally
+            {
+                IsBusy = false;
+                RefreshList();
+            }
+        }
+
     }
 }
