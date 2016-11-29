@@ -11,15 +11,18 @@
       <Button Text="Post Comment"
               x:Name="PostCommentButton"
               BackgroundColor="Teal"
+              TextColor="White"
               Clicked="PostComment_Clicked"/>
       <Button Text="Ok"
               BackgroundColor="Teal"
+              TextColor="White"
               x:Name="PostButton"
               Command="{Binding PostCommentCommand}"
               Clicked="PostComment_Clicked"
               IsVisible="False"></Button>
       <Button Text="Update"
               BackgroundColor="Teal"
+              TextColor="White"
               x:Name="UpdateButton"
               Command="{Binding UpdateCommentCommand}"
               Clicked="PostComment_Clicked"
@@ -53,11 +56,13 @@
                              HeightRequest="40">
                   <Button Text="Delete"
                           BackgroundColor="Red"
+                          TextColor="White"
                           IsVisible="{Binding ShowActions}"
                           Command="{Binding Path= BindingContext.DeleteCommentCommand, Source={x:Reference Name= MenuItem}}"
                           CommandParameter="{Binding Id}"></Button>
                   <Button Text="Edit"
                           BackgroundColor="Teal"
+                          TextColor="White"
                           IsVisible="{Binding ShowActions}"
                           Clicked="EditButton_OnClicked"
                           CommandParameter="{Binding Id}"></Button>

@@ -10,7 +10,7 @@ namespace FabrikaFood.ViewModels
     {
         public MainPageViewModel()
         {
-            Title = "Fabrika Food";
+            Title = "Fabrikam Food";
         }
 
         Command menuCommand;

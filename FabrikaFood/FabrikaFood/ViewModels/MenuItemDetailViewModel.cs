@@ -16,7 +16,7 @@ namespace FabrikaFood.ViewModels
         public MenuItemDetailViewModel(MenuItem menuItem)
         {
             Item = menuItem;
-            Title = menuItem.Title;
+            Title = "Fabrikam Food - " + menuItem.Title;
             RefreshList();
         }
 
