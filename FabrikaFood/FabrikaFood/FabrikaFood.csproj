@@ -47,6 +47,7 @@
     </Compile>
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\MenuItem.cs" />
+    <Compile Include="Pages\MapPage.cs" />
     <Compile Include="Pages\MenuItemDetail.xaml.cs">
       <DependentUpon>MenuItemDetail.xaml</DependentUpon>
     </Compile>

@@ -5,6 +5,11 @@
              Title="{Binding Title}">
   <ContentPage.Content>
     <StackLayout>
+      <Button BackgroundColor="Teal"
+              BorderRadius="10"
+              Command="{Binding MapCommand}"
+              Text="Find Us"
+              TextColor="White" />
       <ListView IsPullToRefreshEnabled="True"
                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
                 ItemsSource="{Binding Items}"

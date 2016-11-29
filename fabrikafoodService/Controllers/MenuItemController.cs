@@ -9,6 +9,7 @@ using System.Web.Http.OData;
 
 namespace fabrikafoodService.Controllers
 {
+    [Authorize]
     public class MenuItemController : TableController<MenuItem>
     {
         protected override void Initialize(HttpControllerContext controllerContext)
@@ -30,12 +31,14 @@ namespace fabrikafoodService.Controllers
             return Lookup(id);
         }
 
+        [Authorize(Roles = "admin")]
         // PATCH tables/MenuItem/48D68C86-6EA6-4C25-AA33-223FC9A27959
         public Task<MenuItem> PatchMenuItem(string id, Delta<MenuItem> patch)
         {
              return UpdateAsync(id, patch);
         }
 
+        [Authorize(Roles = "admin")]
         // POST tables/MenuItem
         public async Task<IHttpActionResult> PostMenuItem(MenuItem item)
         {

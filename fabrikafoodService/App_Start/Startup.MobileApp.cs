@@ -53,17 +53,6 @@ namespace fabrikafoodService
     {
         protected override void Seed(fabrikafoodContext context)
         {
-            //List<TodoItem> todoItems = new List<TodoItem>
-            //{
-            //    new TodoItem { Id = Guid.NewGuid().ToString(), Text = "First item", Complete = false },
-            //    new TodoItem { Id = Guid.NewGuid().ToString(), Text = "Second item", Complete = false },
-            //};
-
-            //foreach (TodoItem todoItem in todoItems)
-            //{
-            //    context.Set<TodoItem>().Add(todoItem);
-            //}
-
             List<MenuItem> menuItems = new List<MenuItem>
             {
                 new MenuItem { Id = Guid.NewGuid().ToString(), Title = "Garlic Bread", Description = "Individual 200gm sourdough baguette, warmed and smothered with garlic and parsley butter.", Price = 7.00m},

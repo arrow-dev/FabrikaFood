@@ -1,4 +1,5 @@
 ﻿using FabrikaFood.Abstractions;
+using FabrikaFood.Pages;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -72,6 +73,31 @@ namespace FabrikaFood.ViewModels
             {
                 await ExecuteRefreshCommand();
             });
+        }
+
+        Command mapCommand;
+
+        public Command MapCommand
+            => mapCommand ?? (mapCommand = new Command(async () => await ExecuteMapCommand()));
+
+        async Task ExecuteMapCommand()
+        {
+            if (IsBusy)
+                return;
+            IsBusy = true;
+
+            try
+            {
+                await Application.Current.MainPage.Navigation.PushAsync(new MapPage());
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"{ex.Message}");
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
     }
 }

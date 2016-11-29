@@ -8,7 +8,7 @@
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 	<uses-permission android:name="android.permission.INTERNET" />
-	<application android:label="FabrikaFood.Droid">
+	<application android:label="FabrikaFood.Droid" android:icon="@drawable/icon">
 		<meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyDUsQGGa6sTi3ccDrHfBCoc6GGNf8att10" />
 	</application>
 </manifest>

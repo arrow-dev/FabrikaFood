@@ -21,8 +21,6 @@ namespace fabrikafoodService.Models
         {
         } 
 
-        //public DbSet<TodoItem> TodoItems { get; set; }
-
         public DbSet<Comment> Comments { get; set; }
 
         public DbSet<MenuItem> MenuItems { get; set; }
