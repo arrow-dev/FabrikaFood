@@ -5,6 +5,7 @@ using Android.OS;
 
 namespace FabrikaFood.Droid
 {
+    //Login Activity on Android startup
     [Activity(Label = "Fabrikam Food", MainLauncher = true, NoHistory=true)]
     public class LoginActivity : Activity
     {

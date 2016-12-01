@@ -2,6 +2,7 @@
 
 namespace FabrikaFood.Models
 {
+    //Data model for comments coming from the database.
     public class Comment: TableData
     {
         public string Content { get; set; }

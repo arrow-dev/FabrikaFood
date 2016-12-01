@@ -1,5 +1,6 @@
 ﻿namespace FabrikaFood.ViewModels
 {
+    //A view model for displaying list of comments.
     public class CommentViewModel
     {
         public string Id { get; set; }

@@ -3,6 +3,7 @@ using Xamarin.Forms.Maps;
 
 namespace FabrikaFood.Pages
 {
+    //Example of a Xaml UI from pure code.
     public class MapPage : ContentPage
     {
         public MapPage()

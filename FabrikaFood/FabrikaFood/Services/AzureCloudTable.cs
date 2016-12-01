@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace FabrikaFood.Services
 {
+    //This class contains generic methods for accessing tabledata from Azure backend.
     public class AzureCloudTable<T> : ICloudTable<T> where T : TableData
     {
         MobileServiceClient client;

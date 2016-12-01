@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace FabrikaFood.Droid
 {
+    //Extention methods for platform specific login code
     public static class CloudServiceExtentions
     {
         public static async Task Login(this AzureCloudService service, Context ctx)

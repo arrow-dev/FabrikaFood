@@ -17,7 +17,7 @@ namespace FabrikaFood.ViewModels
         }
 
         ObservableCollection<Models.MenuItem> items = new ObservableCollection<Models.MenuItem>();
-
+        //Collection of menu items from database.
         public ObservableCollection<Models.MenuItem> Items
         {
             get { return items; }
@@ -33,6 +33,7 @@ namespace FabrikaFood.ViewModels
                 SetProperty(ref selectedItem, value, "SelectedItem");
                 if (selectedItem != null)
                 {
+                    //When an item is selected from the list then navigate to the details page passing the selected item through.
                     Application.Current.MainPage.Navigation.PushAsync(new Pages.MenuItemDetail(selectedItem));
                     SelectedItem = null;
                 }
@@ -41,7 +42,7 @@ namespace FabrikaFood.ViewModels
 
         Command refreshCmd;
         public Command RefreshCommand => refreshCmd ?? (refreshCmd = new Command(async () => await ExecuteRefreshCommand()));
-
+        //Refresh the list of menu items.
         async Task ExecuteRefreshCommand()
         {
             if (IsBusy)
@@ -76,7 +77,7 @@ namespace FabrikaFood.ViewModels
         }
 
         Command mapCommand;
-
+        //Navigate to Maps page.
         public Command MapCommand
             => mapCommand ?? (mapCommand = new Command(async () => await ExecuteMapCommand()));
 

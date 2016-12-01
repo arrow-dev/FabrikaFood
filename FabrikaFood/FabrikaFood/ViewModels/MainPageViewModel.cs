@@ -14,7 +14,7 @@ namespace FabrikaFood.ViewModels
         }
 
         Command menuCommand;
-
+        //Navigate to Menu page.
         public Command MenuCommand
             => menuCommand ?? (menuCommand = new Command(async () => await ExecuteMenuCommand()));
 
@@ -23,6 +23,7 @@ namespace FabrikaFood.ViewModels
             if (IsBusy)
                 return;
             IsBusy = true;
+            //Setting IsBusy to true whenever a Command executes can be used with databinding to give the user visual feedback.
 
             try
             {

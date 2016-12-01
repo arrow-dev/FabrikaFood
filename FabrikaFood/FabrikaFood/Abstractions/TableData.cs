@@ -2,6 +2,7 @@
 
 namespace FabrikaFood.Abstractions
 {
+    //DataModels for data coming from the database inherits the entity system properties from this class.
     public abstract class TableData
     {
         public string Id { get; set; }

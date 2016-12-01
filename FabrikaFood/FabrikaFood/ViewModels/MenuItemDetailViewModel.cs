@@ -11,6 +11,7 @@ namespace FabrikaFood.ViewModels
 {
     class MenuItemDetailViewModel: BaseViewModel
     {
+        //The selected MenuItem
         public MenuItem Item { get; set; }
 
         public MenuItemDetailViewModel(MenuItem menuItem)
@@ -21,7 +22,7 @@ namespace FabrikaFood.ViewModels
         }
 
         ObservableCollection<CommentViewModel> comments = new ObservableCollection<CommentViewModel>();
-
+        //List of comments to display.
         public ObservableCollection<CommentViewModel> Comments
         {
             get { return comments; }
@@ -29,7 +30,7 @@ namespace FabrikaFood.ViewModels
         }
 
         private String newComment;
-
+        //Bound to the editor used for adding and editing comments.
         public string NewComment
         {
             get { return newComment; }
@@ -38,7 +39,7 @@ namespace FabrikaFood.ViewModels
 
         Command refreshCmd;
         public Command RefreshCommand => refreshCmd ?? (refreshCmd = new Command(async () => await ExecuteRefreshCommand()));
-
+        //Refresh the comments.
         async Task ExecuteRefreshCommand()
         {
             if (IsBusy)
@@ -47,18 +48,20 @@ namespace FabrikaFood.ViewModels
 
             try
             {
+                //Get the comments for the selected MenuItem
                 var list = await App.GetCloudService().client.GetTable<Comment>().Where(c => c.MenuItemId == Item.Id).ToListAsync();
+                //Clear the existing comments before repopulating the list.
                 Comments.Clear();
                 foreach (var comment in list)
                 {
                     var viewModel = new CommentViewModel
                     {
-                        //try and get username here?
                         UserId = comment.UserId,
                         MenuItemId = comment.MenuItemId,
                         Content = comment.Content,
                         Id = comment.Id
                     };
+                    //If the logged in user posted the commment then set show actions to true. This is databound to the visibility of the edit and delete controls on the Xaml list template.
                     if (comment.UserId == App.GetCloudService().CurrentUser.UserId)
                     {
                         viewModel.ShowActions = true;
@@ -87,7 +90,7 @@ namespace FabrikaFood.ViewModels
         }
 
         Command postCommentCommand;
-
+        //Post a comment
         public Command PostCommentCommand
             => postCommentCommand ?? (postCommentCommand = new Command(async () => await ExecutePostCommentCommand()));
 
@@ -99,13 +102,14 @@ namespace FabrikaFood.ViewModels
 
             try
             {
+                //Create a new comment object
                 var comment = new Comment()
                 {
                     Content = NewComment,
                     MenuItemId = Item.Id,
                     UserId = App.CloudService.CurrentUser.UserId
                 };
-
+                //Add it to the comment table.
                 await App.CloudService.GetTable<Comment>().CreateItemAsync(comment);
             }
             catch (Exception ex)
@@ -121,7 +125,7 @@ namespace FabrikaFood.ViewModels
         }
 
         Command deleteCommentCommand;
-
+        //Delete a comment.
         public Command DeleteCommentCommand
             => deleteCommentCommand ?? (deleteCommentCommand = new Command<string>(async (string id) => await ExecuteDeleteCommentCommand(id)));
 
@@ -133,6 +137,7 @@ namespace FabrikaFood.ViewModels
 
             try
             {
+                //Get comment object by id then delete.
                 var comment = await App.CloudService.GetTable<Comment>().ReadItemAsync(id);
                 await App.CloudService.GetTable<Comment>().DeleteItemAsync(comment);
             }
@@ -148,7 +153,7 @@ namespace FabrikaFood.ViewModels
         }
 
         Command updateCommentCommand;
-
+        //Edit a comment
         public Command UpdateCommentCommand
             => updateCommentCommand ?? (updateCommentCommand = new Command<string>(async (string id) => await ExecuteUpdateCommentCommand(id)));
 
@@ -160,8 +165,11 @@ namespace FabrikaFood.ViewModels
 
             try
             {
+                //Get comment object by Id
                 var comment = await App.CloudService.GetTable<Comment>().ReadItemAsync(id);
+                //Update the the content to the new comment property bound to the editor.
                 comment.Content = NewComment;
+                //Pass the edited comment object back to the update method.
                 await App.CloudService.GetTable<Comment>().UpdateItemAsync(comment);
             }
             catch (Exception ex)

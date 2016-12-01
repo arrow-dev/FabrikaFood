@@ -2,6 +2,7 @@
 
 namespace FabrikaFood.Models
 {
+    //Data model for menuitems coming from the database.
     public class MenuItem: TableData
     {
         public string Title { get; set; }
